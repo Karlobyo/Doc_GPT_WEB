@@ -70,20 +70,54 @@ with st.form(key='params_for_api'):
     submit_button = st.form_submit_button('Summarize')
 
 
-params = dict(question=question)
+params_sum = dict(question=question)
 
 
 
 
 if submit_button:
     # Call the API
-    api_url = 'http://127.0.0.1:8000/predict'
-    response = requests.get(api_url, params=params)
+    api_url = 'http://127.0.0.1:8000/summarize'
+    response = requests.get(api_url, params=params_sum)
     prediction = response.json()
 
     st.markdown(
         "<p style='color:black;'>Here is your summary:</p>",
         unsafe_allow_html=True
     )
-    
+
+    st.header(prediction)
+
+
+
+
+with st.form(key='params_for_api'):
+
+
+    doc_url = st.text_input(label = "Please insert here the document URL",
+                             value="")
+
+    question = st.text_input(label = "Please insert here your question",
+                             value="")
+
+    submit_button = st.form_submit_button('Ask')
+
+
+params_doc = dict(doc_url=doc_url,
+              question=question)
+
+
+
+
+if submit_button:
+    # Call the API
+    api_url = 'http://127.0.0.1:8000/document'
+    response = requests.get(api_url, params=params_doc)
+    prediction = response.json()
+
+    st.markdown(
+        "<p style='color:black;'>Here is the answer:</p>",
+        unsafe_allow_html=True
+    )
+
     st.header(prediction)
