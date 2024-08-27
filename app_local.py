@@ -141,7 +141,7 @@ if submit_button:
 
 
 
-st.markdown('Or upload an image from your browser:')
+st.markdown('Or upload an image (jpg, jpeg, png, bmp) of your document:')
 
 uploaded_file = st.file_uploader("", type=["jpg", "jpeg", "png", "bmp"])
 
@@ -157,7 +157,7 @@ if uploaded_file is not None:
 
     #save_path = f"Doc_GPT_WEB/docs/uploaded_docs/{uploaded_file}.png"
 
-    save_path = "Doc_GPT_WEB/docs/receipt.png"
+    save_path = "docs/receipt.png"
 
 
     #cv.imwrite(save_path, image_u)
@@ -168,8 +168,7 @@ if uploaded_file is not None:
 
 with st.form(key='params_for_doc_2_api'):
 
-    image = "/Users/carlobarbini/code/Karlobyo/doc_gpt_project/Doc_GPT_WEB/docs/receipt.png"
-
+    image_path = "/Users/carlobarbini/code/Karlobyo/doc_gpt_project/Doc_GPT_WEB/docs/list_app.png"
 
     question = st.text_input(label = "Please insert here your question",
                              value="")
@@ -177,7 +176,7 @@ with st.form(key='params_for_doc_2_api'):
     submit_button = st.form_submit_button('Ask')
 
 
-params_doc_2 = dict(image_path=image,
+params_doc_2 = dict(image_path=image_path,
                   question=question)
 
 
@@ -185,14 +184,21 @@ if submit_button:
     # Call the API
     api_url = 'http://127.0.0.1:8000/document_upload'
     response = requests.get(api_url, params=params_doc_2)
-    prediction = response.json()
 
-    # st.markdown(
-    #     "<p style='color:black;'>Here is the answer:</p>",
-    #     unsafe_allow_html=True
-    # )
+    if response.status_code == 200:
 
-    st.header(prediction)
+        prediction = response.json()
+
+        # st.markdown(
+        #     "<p style='color:black;'>Here is the answer:</p>",
+        #     unsafe_allow_html=True
+        # )
+
+        st.header(prediction)
+
+    else:
+
+        st.markdown("Please use a valid document format >> jpeg, jpg, png, bmp")
 
 
 
