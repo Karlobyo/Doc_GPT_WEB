@@ -91,33 +91,33 @@ if submit_button:
 
 
 
-with st.form(key='params_for_api'):
+# with st.form(key='params_for_api'):
 
 
-    doc_url = st.text_input(label = "Please insert here the document URL",
-                             value="")
+#     doc_url = st.text_input(label = "Please insert here the document URL",
+#                              value="")
 
-    question = st.text_input(label = "Please insert here your question",
-                             value="")
+#     question = st.text_input(label = "Please insert here your question",
+#                              value="")
 
-    submit_button = st.form_submit_button('Ask')
-
-
-params_doc = dict(doc_url=doc_url,
-              question=question)
+#     submit_button = st.form_submit_button('Ask')
 
 
+# params_doc = dict(doc_url=doc_url,
+#               question=question)
 
 
-if submit_button:
-    # Call the API
-    api_url = 'http://127.0.0.1:8000/document'
-    response = requests.get(api_url, params=params_doc)
-    prediction = response.json()
 
-    st.markdown(
-        "<p style='color:black;'>Here is the answer:</p>",
-        unsafe_allow_html=True
-    )
 
-    st.header(prediction)
+# if submit_button:
+#     # Call the API
+#     api_url = 'http://127.0.0.1:8000/document'
+#     response = requests.get(api_url, params=params_doc)
+#     prediction = response.json()
+
+#     st.markdown(
+#         "<p style='color:black;'>Here is the answer:</p>",
+#         unsafe_allow_html=True
+#     )
+
+#     st.header(prediction)
