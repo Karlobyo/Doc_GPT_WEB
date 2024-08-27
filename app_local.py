@@ -45,7 +45,10 @@ add_bg_from_local('pics/medical-pic.jpg')
 # Doc GPT
 
 ## Your personal medical assistant
-### Shed light onto complicated medical reports by summarizing their content to the essential
+#### *Shed light onto complicated medical reports*
+
+***
+
 '''
 
 # Add custom CSS to change the text color to black in the markdowns
@@ -60,8 +63,11 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+'''
+### Summarize
+'''
 
-with st.form(key='params_for_api'):
+with st.form(key='params_for_summary_api'):
 
 
     question = st.text_input(label = "Please insert here the text from your document",
@@ -88,36 +94,43 @@ if submit_button:
 
     st.header(prediction)
 
+'''
+***
+'''
+
+
+'''
+### Ask questions about a medical document
+'''
+
+
+with st.form(key='params_for_doc_api'):
+
+
+    doc_url = st.text_input(label = "Please insert here the document URL",
+                             value="")
+
+    question = st.text_input(label = "Please insert here your question",
+                             value="")
+
+    submit_button = st.form_submit_button('Ask')
+
+
+params_doc = dict(doc_url=doc_url,
+              question=question)
 
 
 
-# with st.form(key='params_for_api'):
 
+if submit_button:
+    # Call the API
+    api_url = 'http://127.0.0.1:8000/document'
+    response = requests.get(api_url, params=params_doc)
+    prediction = response.json()
 
-#     doc_url = st.text_input(label = "Please insert here the document URL",
-#                              value="")
+    st.markdown(
+        "<p style='color:black;'>Here is the answer:</p>",
+        unsafe_allow_html=True
+    )
 
-#     question = st.text_input(label = "Please insert here your question",
-#                              value="")
-
-#     submit_button = st.form_submit_button('Ask')
-
-
-# params_doc = dict(doc_url=doc_url,
-#               question=question)
-
-
-
-
-# if submit_button:
-#     # Call the API
-#     api_url = 'http://127.0.0.1:8000/document'
-#     response = requests.get(api_url, params=params_doc)
-#     prediction = response.json()
-
-#     st.markdown(
-#         "<p style='color:black;'>Here is the answer:</p>",
-#         unsafe_allow_html=True
-#     )
-
-#     st.header(prediction)
+    st.header(prediction)
