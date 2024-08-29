@@ -73,13 +73,13 @@ st.set_page_config(layout='wide')
 with st.form(key='params_for_summary_api'):
 
 
-    question = st.text_input(label = "Please insert here the text from your document",
+    text = st.text_input(label = "Please insert here the text from your document",
                              value="")
 
     submit_button = st.form_submit_button('Summarize')
 
 
-params_sum = dict(question=question)
+params_sum = dict(text=text)
 
 
 
