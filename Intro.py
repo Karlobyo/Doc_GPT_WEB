@@ -19,6 +19,6 @@ st.markdown("")
 
 
 """
-This is a reasearch preview of a transformers-based web application meant to facilitate\n
-the understanding of medical reports.
+This is a research preview of a transformers-based web application meant to facilitate\n
+the understanding of medical reports for example through summarization or question-answer pipelines.
 """
