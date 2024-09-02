@@ -22,3 +22,5 @@ rad.json
 TestResults.xml
 
 .DS_Store
+
+__pycache__
