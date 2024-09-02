@@ -1,24 +1,12 @@
 import streamlit as st
 import requests
-import base64
+
 import cv2 as cv
 import numpy as np
-import os
 
-def add_bg_from_local(image_file):
-    with open(image_file, "rb") as image_file:
-        encoded_string = base64.b64encode(image_file.read())
-    st.markdown(
-    f"""
-    <style>
-    .stApp {{
-        background-image: url(data:image/{"jpg"};base64,{encoded_string.decode()});
-        background-size: cover
-    }}
-    </style>
-    """,
-    unsafe_allow_html=True
-    )
+
+from bg_loader import add_bg_from_local
+
 
 
 st.set_page_config(layout='wide')
@@ -41,7 +29,7 @@ st.set_page_config(layout='wide')
 # """
 # st.write(f'<style>{CSS}</style>', unsafe_allow_html=True)
 
-#add_bg_from_local('pics/medical-pic.jpg')
+# add_bg_from_local('pics/medical-pic.jpg')
 
 
 '''
@@ -103,14 +91,14 @@ if submit_button:
 
 
 '''
-### Ask questions about a medical document
+### Ask questions
 '''
 
 
 with st.form(key='params_for_doc_api'):
 
 
-    doc_url = st.text_input(label = "Please insert here the document URL",
+    doc = st.text_input(label = "Please insert here the document text or URL",
                              value="")
 
 
@@ -120,9 +108,8 @@ with st.form(key='params_for_doc_api'):
     submit_button = st.form_submit_button('Ask')
 
 
-params_doc = dict(doc_url=doc_url,
+params_doc = dict(doc=doc,
               question=question)
-
 
 
 
@@ -163,7 +150,7 @@ if uploaded_file is not None:
     #cv.imwrite(save_path, image_u)
 
     # display uploaded image
-    st.image(image_u, width=200, channels="BGR", caption='uploaded image')
+    st.image(image_u, width=800, channels="BGR", caption='uploaded image')
 
 
 with st.form(key='params_for_doc_2_api'):
