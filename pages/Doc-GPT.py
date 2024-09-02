@@ -98,7 +98,7 @@ if submit_button:
 with st.form(key='params_for_doc_api'):
 
 
-    doc = st.text_input(label = "Please insert here the document text or URL",
+    doc = st.text_input(label = "Please insert here the text from your document",
                              value="")
 
 
