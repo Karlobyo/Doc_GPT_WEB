@@ -57,54 +57,57 @@ st.set_page_config(layout='wide')
 ### Summarize
 '''
 
-with st.form(key='params_for_summary_api'):
+#with st.form(key='params_for_summary_api'):
 
-    text = ""
+text = ""
 
-    selected_option = st.selectbox(label="Choose an option:", options=["Anxiety patient", "Diabetes patient"], index=None)
+options = ["Anxiety patient", "Diabetes patient"]
 
-    if selected_option:
-        if selected_option == "Anxiety patient":
-            text = """Original text:\n
-            Jim is a 56-year-old male. He is currently diagnosed with Major Depressive Disorder and
-            Anxiety Disorder and has been experiencing symptoms for many years. Jim presents well,
-            appearing well-spoken. However, upon delving deeper into his history and symptoms, he
-            experiences a significant amount of anxiety, tension, and paranoia surrounding his day-to-day
-            life. He has difficulties in social situations, especially meeting new people, being in crowded
-            areas, or tolerating social situations. He often picks at his hands when relaying symptoms and is
-            in pain daily. He experiences significant symptoms of depression as well that debilitate him to
-            the point of being unable to leave his house or tent. He is easily agitated and quick to become
-            angry. He feels that his mood shifts quickly where one moment he is functional and the next he
-            can't leave the house or tent. He is always on edge, and when feeling depressed, can't move and
-            it's hard to even get out of bed. He feels shaky and unsteady as he isolates from others."""
+selected_option = st.selectbox(label="Choose an option:", options=options, index=None)
+if selected_option:
+    if selected_option == "Anxiety patient":
+        text = """Original text:\n
+        Jim is a 56-year-old male. He is currently diagnosed with Major Depressive Disorder and
+        Anxiety Disorder and has been experiencing symptoms for many years. Jim presents well,
+        appearing well-spoken. However, upon delving deeper into his history and symptoms, he
+        experiences a significant amount of anxiety, tension, and paranoia surrounding his day-to-day
+        life. He has difficulties in social situations, especially meeting new people, being in crowded
+        areas, or tolerating social situations. He often picks at his hands when relaying symptoms and is
+        in pain daily. He experiences significant symptoms of depression as well that debilitate him to
+        the point of being unable to leave his house or tent. He is easily agitated and quick to become
+        angry. He feels that his mood shifts quickly where one moment he is functional and the next he
+        can't leave the house or tent. He is always on edge, and when feeling depressed, can't move and
+        it's hard to even get out of bed. He feels shaky and unsteady as he isolates from others."""
 
 
 
-        else:
+    else:
 
-            text = """Original text:\n
-            A 14-year-old girl was admitted to our pediatric ward for a second opinion after 2-year history of CDI.
-            The blood tests at the time of first evaluation revealed hypernatremia (Na 147 mEq/L), high plasma osmolality (POsm; 305 mOsm/kg/H2O),
-            yet low urine osmolality (UOsm; 109 mOsm/Kg/ H2O) that led to the diagnosis of CDI
-            for which the girl was treated with desmopressin. Sixteen months later,
-            decrease of water intake and urine output was observed, although no recent variation of
-            body weight or desmopressin dose had been reported. Due to the improvement of polyuria,
-            her physician reduced desmopressin dose progressively, until normalization of water output
-            was reported 2 months later. This led to a diagnosis of reversible CDI, and desmopressin
-            treatment was therefore withdrawn. Two months later (18 months since first diagnosis),
-            she experienced extreme fatigue, nausea, progressive memory loss up to confusion,
-            and lethargy. Patient's mother contacted our center, and the girl was first seen at our
-            department 24 months after the diagnosis of CDI. Clinical examination revealed signs of
-            dehydration, behavior and sensory disturbances, and confusion, while laboratory analyses
-            revealed hypernatremia (Na 156 mEq/L), high POsm (330 mOsm/kg/H2O), low UOsm (84 mOsm/Kg/ H2O),
-            low morning cortisol (80 nmol/L n.v. 138-635 nmol/L), and adrenocorticotropic hormone levels (0.88 pmol/L, n.v.1.3-16.7 pmol/L)
-            as well as low thyrotropin (0.1 mU/L, n.v. 0.4-4 mU/L) and thyroxine values
-            (0.68 ng/dL; n.v. 0.7-1.9 ng/dL).
-            """
+        text = """Original text:\n
+        A 14-year-old girl was admitted to our pediatric ward for a second opinion after 2-year history of CDI.
+        The blood tests at the time of first evaluation revealed hypernatremia (Na 147 mEq/L), high plasma osmolality (POsm; 305 mOsm/kg/H2O),
+        yet low urine osmolality (UOsm; 109 mOsm/Kg/ H2O) that led to the diagnosis of CDI
+        for which the girl was treated with desmopressin. Sixteen months later,
+        decrease of water intake and urine output was observed, although no recent variation of
+        body weight or desmopressin dose had been reported. Due to the improvement of polyuria,
+        her physician reduced desmopressin dose progressively, until normalization of water output
+        was reported 2 months later. This led to a diagnosis of reversible CDI, and desmopressin
+        treatment was therefore withdrawn. Two months later (18 months since first diagnosis),
+        she experienced extreme fatigue, nausea, progressive memory loss up to confusion,
+        and lethargy. Patient's mother contacted our center, and the girl was first seen at our
+        department 24 months after the diagnosis of CDI. Clinical examination revealed signs of
+        dehydration, behavior and sensory disturbances, and confusion, while laboratory analyses
+        revealed hypernatremia (Na 156 mEq/L), high POsm (330 mOsm/kg/H2O), low UOsm (84 mOsm/Kg/ H2O),
+        low morning cortisol (80 nmol/L n.v. 138-635 nmol/L), and adrenocorticotropic hormone levels (0.88 pmol/L, n.v.1.3-16.7 pmol/L)
+        as well as low thyrotropin (0.1 mU/L, n.v. 0.4-4 mU/L) and thyroxine values
+        (0.68 ng/dL; n.v. 0.7-1.9 ng/dL).
+        """
 
     st.markdown(text)
 
-    submit_button = st.form_submit_button('Summarize')
+#if selected_option:
+submit_button = st.button('Summarize')
+
 
 min_length = 20
 max_length = 30
@@ -135,30 +138,64 @@ if submit_button:
 
 
 
-with st.form(key='params_for_doc_api'):
+#with st.form(key='params_for_doc_api'):
 
-    doc = ""
-    question = ""
+doc = ""
+question = ""
 
-    patients = ["Anxiety patient", "Schizofrenia patient"]
+patients = ["Anxiety patient", "Schizofrenia patient"]
 
-    selected_doc = st.selectbox(label="Choose a document:",
-                                   options=patients, index=None)
+selected_doc = st.selectbox(label="Choose a document:",
+                                options=patients, index=None)
 
 
-    if selected_doc == patients[0]:
-        doc = "https://soarworks.samhsa.gov/sites/default/files/media/documents/2023-04/MSR%20Sample%20Anxiety%20and%20Depression%202023.pdf"
+if selected_doc:
+    if selected_doc == "Anxiety patient":
+        doc = """Original text:\n
+        Jim is a 56-year-old male. He is currently diagnosed with Major Depressive Disorder and
+        Anxiety Disorder and has been experiencing symptoms for many years. Jim presents well,
+        appearing well-spoken. However, upon delving deeper into his history and symptoms, he
+        experiences a significant amount of anxiety, tension, and paranoia surrounding his day-to-day
+        life. He has difficulties in social situations, especially meeting new people, being in crowded
+        areas, or tolerating social situations. He often picks at his hands when relaying symptoms and is
+        in pain daily. He experiences significant symptoms of depression as well that debilitate him to
+        the point of being unable to leave his house or tent. He is easily agitated and quick to become
+        angry. He feels that his mood shifts quickly where one moment he is functional and the next he
+        can't leave the house or tent. He is always on edge, and when feeling depressed, can't move and
+        it's hard to even get out of bed. He feels shaky and unsteady as he isolates from others."""
+
+
 
     else:
-        doc = "https://soarworks.samhsa.gov/sites/default/files/media/documents/2023-04/MSR%20Sample%20Personality%20Disorder%202023.pdf"
 
+        doc = """Original text:\n
+        A 14-year-old girl was admitted to our pediatric ward for a second opinion after 2-year history of CDI.
+        The blood tests at the time of first evaluation revealed hypernatremia (Na 147 mEq/L), high plasma osmolality (POsm; 305 mOsm/kg/H2O),
+        yet low urine osmolality (UOsm; 109 mOsm/Kg/ H2O) that led to the diagnosis of CDI
+        for which the girl was treated with desmopressin. Sixteen months later,
+        decrease of water intake and urine output was observed, although no recent variation of
+        body weight or desmopressin dose had been reported. Due to the improvement of polyuria,
+        her physician reduced desmopressin dose progressively, until normalization of water output
+        was reported 2 months later. This led to a diagnosis of reversible CDI, and desmopressin
+        treatment was therefore withdrawn. Two months later (18 months since first diagnosis),
+        she experienced extreme fatigue, nausea, progressive memory loss up to confusion,
+        and lethargy. Patient's mother contacted our center, and the girl was first seen at our
+        department 24 months after the diagnosis of CDI. Clinical examination revealed signs of
+        dehydration, behavior and sensory disturbances, and confusion, while laboratory analyses
+        revealed hypernatremia (Na 156 mEq/L), high POsm (330 mOsm/kg/H2O), low UOsm (84 mOsm/Kg/ H2O),
+        low morning cortisol (80 nmol/L n.v. 138-635 nmol/L), and adrenocorticotropic hormone levels (0.88 pmol/L, n.v.1.3-16.7 pmol/L)
+        as well as low thyrotropin (0.1 mU/L, n.v. 0.4-4 mU/L) and thyroxine values
+        (0.68 ng/dL; n.v. 0.7-1.9 ng/dL).
+        """
+
+    st.markdown(doc)
 
     if selected_doc == patients[0]:
 
         questions = ["What does Jim suffer from?", "What are the effects of this disease?"]
 
         selected_question = st.selectbox(label="Choose a question:",
-                                   options=questions, index=None)
+                                options=questions, index=None)
 
 
         if selected_question == questions[0]:
@@ -172,7 +209,7 @@ with st.form(key='params_for_doc_api'):
         questions = ["What treatment is recommended?", "How were the blood tests?"]
 
         selected_question = st.selectbox(label="Choose a question:",
-                                   options=questions, index=None)
+                                options=questions, index=None)
 
 
         if selected_question == "What treatment is recommended?":
@@ -180,12 +217,14 @@ with st.form(key='params_for_doc_api'):
         else:
             question = "How were the blood tests?"
 
+    if selected_doc is not None and selected_question is not None:
+        submit_button = st.button('Ask')
 
-    submit_button = st.form_submit_button('Ask')
 
-
+# min_length = 20
+# max_length = 100
 params_doc = dict(doc=doc,
-              question=question)
+              question=question)#, min_length=min_length, max_length=max_length)
 
 
 
@@ -202,7 +241,7 @@ if submit_button:
 
     st.header(prediction)
 
-
+st.markdown('***')
 
 st.markdown('Or upload an image (jpg, jpeg, png, bmp) of your document:')
 
