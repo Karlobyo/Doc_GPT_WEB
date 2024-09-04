@@ -8,6 +8,9 @@ import numpy as np
 from bg_loader import add_bg_from_local
 
 
+URL = "http://127.0.0.1:8000"
+#URL = "https://docgpt-72mal6ptca-ew.a.run.app"
+
 
 st.set_page_config(layout='wide')
 
@@ -74,7 +77,7 @@ params_sum = dict(text=text)
 
 if submit_button:
     # Call the API
-    api_url = 'http://127.0.0.1:8000/summarize'
+    api_url = f'{URL}/summarize'
     response = requests.get(api_url, params=params_sum)
     prediction = response.json()
 
@@ -115,7 +118,7 @@ params_doc = dict(doc=doc,
 
 if submit_button:
     # Call the API
-    api_url = 'http://127.0.0.1:8000/document'
+    api_url = f'{URL}/document'
     response = requests.get(api_url, params=params_doc)
     prediction = response.json()
 
@@ -169,7 +172,7 @@ params_doc_2 = dict(image_path=image_path,
 
 if submit_button:
     # Call the API
-    api_url = 'http://127.0.0.1:8000/document_upload'
+    api_url = f'{URL}/document_upload'
     response = requests.get(api_url, params=params_doc_2)
 
     if response.status_code == 200:
